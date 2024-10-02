@@ -12,10 +12,10 @@ jobs:
     uses: eammosov/cicd_actions/.github/workflows/pr-merge.yml@main
     with:
       username: ${{ github.actor }}
-#    env:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+    #    env:
+    #      token: ${{ secrets.GITHUB_TOKEN }}
 
 
   local_job:
