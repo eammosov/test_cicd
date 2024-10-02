@@ -6,15 +6,13 @@ name: Caller Workflow
 on:
   workflow_call:
   workflow_dispatch:
-    secrets:
-      GITHUB_TOKEN:
-        required: true
 
 jobs:
   call_reusable_workflow:
     uses: eammosov/cicd_actions/.github/workflows/pr-merge.yml@main
     with:
       username: ${{ github.actor }}
+    secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   local_job:
