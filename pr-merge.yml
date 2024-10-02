@@ -1,0 +1,20 @@
+# File: .github/workflows/reusable-workflow.yml
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        type: string
+
+jobs:
+  reusable_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet User
+        run: echo "Привет, ${{ inputs.username }}!"
+
+      - name: Perform Task
+        run: |
+          echo "Выполняю некоторую задачу..."
