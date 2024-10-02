@@ -12,6 +12,7 @@ jobs:
     uses: eammosov/cicd_actions/.github/workflows/pr-merge.yml@main
     with:
       username: ${{ github.actor }}
+      token: ${{ secrets.GITHUB_TOKEN }}
 
   local_job:
     runs-on: ubuntu-latest
