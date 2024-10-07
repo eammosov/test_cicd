@@ -3,6 +3,13 @@ name: Staging
 
 on:
   workflow_dispatch:
+    branches:
+      - main
+    inputs:
+      merge_branch:
+        required: true
+        type: string
+        default: 'staging'
     secrets:
       PAT:
         required: true
@@ -10,5 +17,7 @@ on:
 jobs:
   call_reusable_workflow:
     uses: eammosov/cicd_actions/.github/workflows/pr-staging.yml@main
+    with:
+      merge_branch: ${{ inputs.merge_branch }}
     secrets:
       token: "${{ secrets.PAT }}"
