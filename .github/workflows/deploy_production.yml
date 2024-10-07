@@ -7,17 +7,19 @@ on:
     inputs:
       origin_branch:
         required: true
-        readonly: true
         type: string
         default: 'staging'
       merge_branch:
         required: true
-        readonly: true
         type: string
         default: 'production'
     secrets:
       PAT:
         required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   call_reusable_workflow:
