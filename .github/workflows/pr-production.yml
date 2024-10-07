@@ -6,6 +6,10 @@ on:
     branches:
       - staging
     inputs:
+      origin_branch:
+        required: true
+        type: string
+        default: 'staging'
       merge_branch:
         required: true
         type: string
