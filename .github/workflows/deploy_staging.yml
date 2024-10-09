@@ -2,7 +2,6 @@ name: Deploy into staging
 
 on:
   workflow_dispatch:
-    ref: main
     secrets:
       PAT:
         required: true
@@ -12,6 +11,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          ref: staging
   call_reusable_workflow:
     if: github.ref == 'refs/heads/main'
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
