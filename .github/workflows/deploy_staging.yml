@@ -2,8 +2,7 @@ name: Deploy into staging
 
 on:
   workflow_dispatch:
-    branches:
-      - main
+    ref: main
     secrets:
       PAT:
         required: true
