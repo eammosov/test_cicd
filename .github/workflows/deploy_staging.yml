@@ -1,5 +1,4 @@
-# File: .github/workflows/caller-workflow.yml
-name: Staging
+name: Deploy into staging
 
 on:
   workflow_dispatch:
@@ -18,9 +17,13 @@ on:
       PAT:
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  call_reusable_workflow:
-    uses: eammosov/cicd_actions/.github/workflows/pr-staging.yml@main
+  call_remote_action:
+    uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
       origin_branch: ${{ inputs.origin_branch }}
       merge_branch: ${{ inputs.merge_branch }}
