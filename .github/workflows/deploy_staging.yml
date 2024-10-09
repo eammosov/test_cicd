@@ -23,6 +23,7 @@ concurrency:
 
 jobs:
   call_remote_action:
+    if: github.ref == 'refs/heads/main'
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
       origin_branch: ${{ inputs.origin_branch }}
