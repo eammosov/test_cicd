@@ -12,16 +12,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  ORIGIN_BRANCH: 'main'
-  MERGE_BRANCH: 'staging'
-
 jobs:
   call_reusable_workflow:
     if: github.ref == 'refs/heads/main'
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
-      origin_branch: ${{ ORIGIN_BRANCH }}
-      merge_branch: ${{ MERGE_BRANCH }}
+      origin_branch: "main"
+      merge_branch: "staging"
     secrets:
       token: "${{ secrets.PAT }}"
