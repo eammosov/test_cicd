@@ -21,7 +21,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
-      origin_branch: ${{ env.ORIGIN_BRANCH }}
-      merge_branch: ${{ env.MERGE_BRANCH }}
+      origin_branch: $ORIGIN_BRANCH
+      merge_branch: $MERGE_BRANCH
     secrets:
       token: "${{ secrets.PAT }}"
