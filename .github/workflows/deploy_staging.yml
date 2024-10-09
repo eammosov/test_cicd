@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  call_reusable_workflow:
+  call_remote_action:
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
       origin_branch: ${{ inputs.origin_branch }}
