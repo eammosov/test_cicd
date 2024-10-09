@@ -4,15 +4,6 @@ on:
   workflow_dispatch:
     branches:
       - main
-    inputs:
-      origin_branch:
-        required: true
-        type: string
-        default: 'main'
-      merge_branch:
-        required: true
-        type: string
-        default: 'staging'
     secrets:
       PAT:
         required: true
@@ -21,12 +12,16 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  ORIGIN_BRANCH: 'main'
+  MERGE_BRANCH: 'staging'
+
 jobs:
-  call_remote_action:
+  call_reusable_workflow:
     if: github.ref == 'refs/heads/main'
     uses: eammosov/cicd_actions/.github/workflows/merge_branches.yml@main
     with:
-      origin_branch: ${{ inputs.origin_branch }}
-      merge_branch: ${{ inputs.merge_branch }}
+      origin_branch: ${{ env.ORIGIN_BRANCH }}
+      merge_branch: ${{ env.MERGE_BRANCH }}
     secrets:
       token: "${{ secrets.PAT }}"
